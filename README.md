@@ -3,7 +3,7 @@
 Master: [![Build Status](https://semaphoreci.com/api/v1/bas-ansible-roles-collection/python2/branches/master/badge.svg)](https://semaphoreci.com/bas-ansible-roles-collection/python2)
 Develop: [![Build Status](https://semaphoreci.com/api/v1/bas-ansible-roles-collection/python2/branches/develop/badge.svg)](https://semaphoreci.com/bas-ansible-roles-collection/python2)
 
-Installs Python 2 language runtime and development packages
+Installs Python 2 language runtime/development packages and PIP package manager
 
 **Part of the BAS Ansible Role Collection (BARC)**
 
@@ -11,7 +11,9 @@ Installs Python 2 language runtime and development packages
 
 ## Overview
 
-* ...
+* Installs Python 2 runtime package
+* Installs Python 2 development package
+* Installs PIP package manager
 
 ## Quality Assurance
 
@@ -44,11 +46,31 @@ More information on role requirements is available in the
 
 ## Limitations
 
-* none
+* The Python version varies depending on which operating system is used
 
-More information on role limitations is available in the
+As the package policy varies between operating systems, the version of Python installed is variable between supported 
+operating systems.
+
+For Python 2, only the minor version of Python differs between supported operating systems.
+
+_This limitation is **NOT** considered to be significant. Solutions will **NOT** be actively pursued._ 
+_Pull requests addressing this limitation will be considered.*_
+
+See [BARC-127](https://jira.ceh.ac.uk/browse/BARC-127) for further details.
+
+* The Python PIP version varies depending on which operating system is used
+
+As the package policy varies between operating systems, the version of Python installed is variable between supported 
+operating systems.
+
+_This limitation is **NOT** considered to be significant. Solutions will **NOT** be actively pursued._ 
+_Pull requests addressing this limitation will be considered.*_
+
+See [BARC-128](https://jira.ceh.ac.uk/browse/BARC-128) for further details.
+
+More information on role limitations is available in the 
 [BARC General Documentation](https://antarctica.hackpad.com/BARC-Overview-and-Policies-SzcHzHvitkt#:h=Role-limitations)
-
+ 
 ## Usage
 
 ### BARC Manifest
@@ -64,6 +86,28 @@ If you do not want these facts to be set by this role, you **MUST** skip the **B
 
 More information is available in the
 [BARC General Documentation](https://antarctica.hackpad.com/BARC-Overview-and-Policies-SzcHzHvitkt#:h=Role-Manifest)
+
+### Python version
+
+Depending on the operating system used, the version of Python and PIP installed will differ, though it will be at least 
+Python *2.7*. The table below hopes to clarify the versions you can expect:
+
+| Operating System | Python Version | PIP Version | Notes  |
+| ---------------- | -------------- | ----------- | ------ |
+| Ubuntu           | *2.7.6*        | *1.5*       | -      |
+| CentOS           | *2.7.5*        | *7.1*       | -      |
+
+Because the exact version installed cannot be guaranteed by this role, you should be careful if using depending on this 
+role in another role or a project that relies on Python. If any version of Python 2.7 is acceptable this role is 
+suitable, however where you depend on some feature added to minor releases (e.g. *2.1*) this role is unsuitable.
+
+This ambiguity, and the differences in the version of PIP available are both considered limitations.
+See the *limitations* section for more information.
+
+### Development packages
+
+Unusually for a BARC role this role will install development libraries as well as run-time libraries for Python. This 
+is to allow modules which build native extensions to be installed.
 
 ### Typical playbook
 

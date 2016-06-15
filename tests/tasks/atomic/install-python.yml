@@ -1,0 +1,29 @@
+---
+# Tests Python 2 is installed correctly
+
+- name: determine if python 2 packages are installed - CentOS
+  command: rpm -qa
+  changed_when: False
+  register: python2_test_fact_python_packages_are_installed_centos
+  when: ansible_distribution == "CentOS"
+- name: assert python 2 packages are installed - CentOS
+  assert:
+    that:
+      - "'python-' in python2_test_fact_python_packages_are_installed_centos.stdout"
+      - "'python-devel' in python2_test_fact_python_packages_are_installed_centos.stdout"
+  when: ansible_distribution == "CentOS"
+
+- name: determine if python 2 packages are installed - Ubuntu
+  command: "dpkg -s {{ item }}"
+  with_items:
+    - python
+    - python-dev
+  changed_when: False
+  register: python2_test_fact_python_packages_are_installed_ubuntu
+  when: ansible_distribution == "Ubuntu"
+- name: assert python 2 packages are installed - Ubuntu
+  assert:
+    that:
+      - "'install ok installed' in item.stdout"
+  with_items: "{{ python2_test_fact_python_packages_are_installed_ubuntu.results }}"
+  when: ansible_distribution == "Ubuntu"

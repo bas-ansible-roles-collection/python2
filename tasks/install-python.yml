@@ -1,0 +1,23 @@
+---
+# Install Python 2 runtime and development packages
+
+- name: install python 2 - CentOS
+  yum:
+             pkg={{ item }}
+    update_cache=yes
+           state=present
+  with_items:
+    - python
+    - python-devel
+  when: ansible_distribution == "CentOS"
+
+- name: install python 2 - Ubuntu
+  apt:
+                 pkg={{ item }}
+        update_cache=yes
+    cache_valid_time=3600
+               state=present
+  with_items:
+    - python
+    - python-dev
+  when: ansible_distribution == "Ubuntu"
