@@ -1,0 +1,6 @@
+---
+# Default variables - inventory or playbook overrides will be respected
+
+# BARC specific variables
+python2_barc_role_name: python2
+python2_barc_role_version: 0.1.0
