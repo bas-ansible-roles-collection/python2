@@ -1,0 +1,11 @@
+---
+# Tests if python can actually be used
+
+- name: get python version
+  command: python --version
+  changed_when: false
+  register: python2_test_fact_python_version
+- name: assert python is at least version 2
+  assert:
+    that:
+      - "'Python 2.' in python2_test_fact_python_version.stderr"

@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Felix Fennell
-  description: Installs Python 2 language runtime and development packages
+  description: Installs Python 2 language runtime/development packages and PIP package manager
   company: British Antarctic Survey
 
   issue_tracker_url: https://jira.ceh.ac.uk/browse/BARC

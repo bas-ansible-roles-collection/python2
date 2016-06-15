@@ -1,0 +1,21 @@
+---
+# Install Python PIP package manager
+
+- name: install python pip - CentOS
+  yum:
+             pkg={{ item }}
+    update_cache=yes
+           state=present
+  with_items:
+    - python-pip
+  when: ansible_distribution == "CentOS"
+
+- name: install python pip - Ubuntu
+  apt:
+                 pkg={{ item }}
+        update_cache=yes
+    cache_valid_time=3600
+               state=present
+  with_items:
+    - python-pip
+  when: ansible_distribution == "Ubuntu"

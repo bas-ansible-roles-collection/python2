@@ -1,5 +1,5 @@
 ---
-# Tests ...
+# Tests Python 2 runtime/development packages and PIP package manager are installed
 
 # Flush handlers
 #
@@ -19,6 +19,8 @@
 # These tests mirror individual tasks to ensure they execute correctly
 # E.g. creating a user, installing the right package or generating a valid configuration file
 
+- include: atomic/install-python.yml
+- include: atomic/install-python-pip.yml
 - include: atomic/register-role.yml
 
 # Functionality tests
@@ -26,4 +28,6 @@
 # These tests ensure overall processes can be completed to give a valid result
 # E.g. checking a web-server serves a web-page ensures the relevant packages and configuration files work together
 
+- include: functionality/test-python.yml
+- include: functionality/test-python-pip.yml
 - include: functionality/barc-manifest.yml

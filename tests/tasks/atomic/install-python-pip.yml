@@ -1,0 +1,27 @@
+---
+# Tests PIP Python package manager is installed correctly
+
+- name: determine if python pip package is installed - CentOS
+  command: rpm -qa
+  changed_when: False
+  register: python2_test_fact_pip_package_is_installed_centos
+  when: ansible_distribution == "CentOS"
+- name: assert python pip package is installed - CentOS
+  assert:
+    that:
+      - "'python-pip-' in python2_test_fact_pip_package_is_installed_centos.stdout"
+  when: ansible_distribution == "CentOS"
+
+- name: determine if python pip package is installed - Ubuntu
+  command: "dpkg -s {{ item }}"
+  with_items:
+    - python-pip
+  changed_when: False
+  register: python2_test_fact_pip_package_is_installed_ubuntu
+  when: ansible_distribution == "Ubuntu"
+- name: assert python pip package is installed - Ubuntu
+  assert:
+    that:
+      - "'install ok installed' in item.stdout"
+  with_items: "{{ python2_test_fact_pip_package_is_installed_ubuntu.results }}"
+  when: ansible_distribution == "Ubuntu"

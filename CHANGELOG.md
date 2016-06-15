@@ -7,6 +7,8 @@ Remember: Make sure to update python2_barc_role_version variable when a new vers
 
 ## [Unreleased][unreleased]
 
+## 0.1.0 - 15/06/2016
+
 ### Added
 
-* New role! - initial version based on 0.3.1 of the https://github.com/bas-ansible-roles-collection/python2.git flavour of the BAS Base Project - Pristine
+* New role! - initial version based on 0.3.1 of the BARC flavour of the BAS Base Project - Pristine

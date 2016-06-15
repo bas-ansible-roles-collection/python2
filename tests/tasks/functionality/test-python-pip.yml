@@ -1,0 +1,7 @@
+---
+# Test if Python PIP can actually be used
+
+- name: get pip version
+  command: pip -v
+  changed_when: false
+  register: python2_test_fact_pip_version

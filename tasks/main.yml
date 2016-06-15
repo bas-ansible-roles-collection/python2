@@ -1,5 +1,15 @@
 ---
-# ...
+# Install Python 2 runtime/development packages and PIP package manager
+
+- include: install-python.yml
+  tags:
+    - BARC_INSTALL
+    - BARC_INSTALL_PACKAGES
+
+- include: install-python-pip.yml
+  tags:
+    - BARC_INSTALL
+    - BARC_INSTALL_PACKAGES
 
 - include: register-role.yml
   tags:
