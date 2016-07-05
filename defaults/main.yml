@@ -3,4 +3,6 @@
 
 # BARC specific variables
 python2_barc_role_name: python2
-python2_barc_role_version: 0.1.0
+python2_barc_role_version: 0.2.0
+
+BARC_use_non_system_package_sources: true

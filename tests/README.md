@@ -16,14 +16,17 @@ multiple environments.
 
 The *Testing* environment tests a single scenario:
 
-* Tests Python 2 runtime and development packages are installed 
-* Tests PIP package manager is installed
+* tests Python 2 runtime and development packages are installed, using non-system package sources, where available
+* tests PIP package manager is installed
 
 The *Local Testing* environment tests multiple scenarios:
 
-1. `test-basic` 
-    * Tests Python 2 runtime and development packages are installed
-    * Tests PIP package manager is installed
+1. `test-basic`
+    * tests Python 2 runtime and development packages are installed, using non-system package sources, where available
+    * tests PIP package manager is installed
+2. `test-system-only`
+    * tests Python 2 runtime and development packages are installed, using system-only package sources
+    * tests PIP package manager is installed
 
 **Note:** *Local Testing* environments test scenarios on all operating systems this role supports. Services providing
 *Testing* environments may limit which operating system are available (e.g. SemaphoreCI only supports Ubuntu Trusty).

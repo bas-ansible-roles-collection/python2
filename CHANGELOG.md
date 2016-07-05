@@ -7,6 +7,12 @@ Remember: Make sure to update python2_barc_role_version variable when a new vers
 
 ## [Unreleased][unreleased]
 
+## 0.2.0 - 05/06/2016
+
+### Added
+
+* Support for non-system python packages on Ubuntu to use more recent python versions
+
 ## 0.1.0 - 15/06/2016
 
 ### Added
