@@ -46,12 +46,20 @@ More information on role requirements is available in the
 
 ## Limitations
 
-* The Python version varies depending on which operating system is used
+* The Python version varies depending on which operating system is used and if non-system package sources are permitted
 
-As the package policy varies between operating systems, the version of Python installed is variable between supported 
-operating systems.
+As the package policy varies between system and non-system package sources, and between operating systems, the version 
+of Python installed is variable between supported operating systems.
 
-For Python 2, only the minor version of Python differs between supported operating systems.
+In all cases, only the minor version of Python differs between supported operating systems.
+
+For Ubuntu machines, a non-system PPA is installed resulting in more recent minor versions of Python to be installed. 
+On CentOS machines, the system default package for Ruby will always be installed as no non-system source is available.
+
+It is a convention of BARC roles to use the latest version of packages. Where a suitable non-system package source is 
+available it will be used. Otherwise system packages will be used. Suitable non-system packages require a reputable,
+maintainer, typically a company or well respected individual. Where non-system packages are used, the variable 
+*BARC_use_non_system_package_sources* can be set to `false` to always use system packages if this is needed.
 
 _This limitation is **NOT** considered to be significant. Solutions will **NOT** be actively pursued._ 
 _Pull requests addressing this limitation will be considered.*_
@@ -90,16 +98,17 @@ More information is available in the
 ### Python version
 
 Depending on the operating system used, the version of Python and PIP installed will differ, though it will be at least 
-Python *2.7*. The table below hopes to clarify the versions you can expect:
+Python *2.7.5*. The table below hopes to clarify the versions you can expect:
 
-| Operating System | Python Version | PIP Version | Notes  |
-| ---------------- | -------------- | ----------- | ------ |
-| Ubuntu           | *2.7.6*        | *1.5*       | -      |
-| CentOS           | *2.7.5*        | *7.1*       | -      |
+| Operating System | Non-System Package Sources Permitted | Python Version | PIP Version | Notes  |
+| ---------------- | ------------------------------------ | -------------- | ----------- | ------ |
+| Ubuntu           | Yes                                  | *2.7.10*       | *1.5*       | -      |
+| Ubuntu           | No                                   | *2.7.6*        | *1.5*       | -      |
+| CentOS           | N/A                                  | *2.7.5*        | *7.1*       | -      |
 
 Because the exact version installed cannot be guaranteed by this role, you should be careful if using depending on this 
 role in another role or a project that relies on Python. If any version of Python 2.7 is acceptable this role is 
-suitable, however where you depend on some feature added to minor releases (e.g. *2.1*) this role is unsuitable.
+suitable, however where you depend on some feature added to minor releases (e.g. *2.7.9*) this role is unsuitable.
 
 This ambiguity, and the differences in the version of PIP available are both considered limitations.
 See the *limitations* section for more information.
@@ -145,6 +154,18 @@ More information is available in the
 * specifies the name of this role within the BAS Ansible Roles Collection (BARC) used for setting local facts
 * see the *BARC roles manifest* section for more information
 * example: `2.0.0`
+
+### *BARC_use_non_system_package_sources*
+ 
+* **MAY** be specified
+* Specifies whether non-system sources can be used to install packages
+* Note: This variable is scoped to all other BARC roles which install packages from non-system sources
+* Values MUST use one of these options, as determined by Ansible:
+    * `true` 
+    * `false` 
+* Values **SHOULD NOT** be quoted to prevent Ansible coercing values to a string
+* Where not specified, a value of true will be assumed
+* Default: `true` 
 
 ## Developing
 

@@ -1,0 +1,5 @@
+---
+# These variables override those setup by roles and groups
+
+# BARC specific variables
+BARC_use_non_system_package_sources: true

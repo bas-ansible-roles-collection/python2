@@ -1,6 +1,8 @@
 ---
 # Install Python 2 runtime and development packages
 
+# There is no non-system sources for Python 2 on CentOS - therefore system-only sources are used for both scenarios
+
 - name: install python 2 - CentOS
   yum:
              pkg={{ item }}
@@ -10,6 +12,17 @@
     - python
     - python-devel
   when: ansible_distribution == "CentOS"
+
+# If using non-system sources (preferred)
+
+- name: add python 2 PPA - Ubuntu
+  apt_repository:
+    repo='ppa:fkrull/deadsnakes-python2.7'
+    state=present
+  when: ansible_distribution == "Ubuntu" and
+    (BARC_use_non_system_package_sources == true or BARC_use_non_system_package_sources == 'True')
+
+# For both non-system and system-only sources
 
 - name: install python 2 - Ubuntu
   apt:
